@@ -191,7 +191,7 @@ class Ldi3Mesh extends THREE.Object3D {
 
         super()
         this.ftheta_scale = 1.15;
-        console.log("_ftheta_scale=", this.ftheta_scale);
+      
 
         // Make the initial shader uniforms.
         this.uniforms = {
@@ -337,18 +337,7 @@ let delay1frame_reset = false; // The sessionstart event happens one frame too e
 let photo_mode = false;
 let embed_mode = false;
 let has_played_video = false;
-let looking_glass_config;
-// Used for programmatic camera animation
-let anim_x = 0.15;
-let anim_y = 0.10;
-let anim_z = 0.05;
-let anim_u = 0.15;
-let anim_v = 0.10;
-let anim_x_speed = 7500;
-let anim_y_speed = 5100;
-let anim_z_speed = 6100;
-let anim_u_speed = 4500;
-let anim_v_speed = 5100;
+
 
 const BUFFERING_TIMEOUT = 500;
 const TRANSITION_ANIM_DURATION = 8000;
@@ -400,6 +389,7 @@ function startAnimatedTransitionEffect() {
     transition_start_timer = performance.now();
   }
 }
+
 
 function render() {
 if (transition_start_timer) {
@@ -557,21 +547,21 @@ function loadMedia(_media_urls, _loop = true, _autoplay_muted = true, _enable_in
   }
 }
 AFRAME.registerComponent("lifecast-component", {
+  schema: {
+    media_urls: { type: "array", default: ["orrery_transp_ldi3.jpg"], minLength: 1 },
+    decode_12bit: { type: "boolean", default: true },
+    enable_intro_animation: { type: "boolean", default: true },
+  },
 	init: function () {
 	  ({
 		_format = "ldi3", // ldi3
-		_media_urls = [
-    "assets/facepaint_ldi3_h264_1920x1920.mp4",
-		//"assets/orrery_transp_ldi3.jpg",
-		],
-
-		_ftheta_scale = null,
-	
-		_decode_12bit = true,
-		_enable_intro_animation = true,
+		_media_urls = this.data.media_urls,
+		_ftheta_scale = null,	
+		_decode_12bit = this.data.decode_12bit,
+		_enable_intro_animation = this.data.enable_intro_animation,
 		_autoplay_muted = true, // If this is a video, try to start playing immediately (muting is required)
 		_loop = true,
-		_transparent_bg = false, //  If you don't need transparency, it is faster to set this to false
+		_transparent_bg = true, //  If you don't need transparency, it is faster to set this to false
 	  } = {});
 	  window.lifecast_player = this;
 
@@ -591,29 +581,19 @@ AFRAME.registerComponent("lifecast-component", {
 		embed_mode = true;
 	  }
   
-
-  
 	  error_message_div = document.createElement("div");
 	  container.appendChild(error_message_div);
   
 	  loadTexture(_media_urls, _loop, _autoplay_muted);
   
 	  camera = this.el.camera;
-  
-
 	  scene = this.el.object3D;
 	  scene.background = new THREE.Color(0x000000);
-  
-	  
 		let canvas1 = emptyDiv;
-		canvas1.style.display = "none";
-	  
-  
+		canvas1.style.display = "none";  
 	  world_group = new THREE.Group();
-
 	  world_group.position.set(0, 1.5, 0); // fix position
-	  scene.add(world_group);
-  
+	  scene.add(world_group); 
 
   
 	  if (format == "ldi3") {
