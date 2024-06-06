@@ -1,1 +1,1 @@
-# A-Frame-LifeCast-Volumetric-Player-Component
+# A-Frame LifeCast Volumetric Player Component
