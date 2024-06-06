@@ -25,10 +25,13 @@ To use the component add "lifecast-component" to an entity in A-Frame scene. See
 
 ```
 The component has the following parameters:
-- <b>media_urls: { type: "array", default: ["orrery_transp_ldi3.jpg"] }</b> - URL to ldi3 video (mp4) or photo.
-- <b>decode_12bit: { type: "boolean", default: true }</b> - If 12 bit decoder should be used or not. True or false.
-- <b>enable_intro_animation: { type: "boolean", default: true }</b> - If intro animation should be applied. True or false.
+- <b>media_urls: { type: "array", default: ["orrery_transp_ldi3.jpg"] }</b> - URL to ldi3 video (mp4) or photo. If no url is provided, default url is used.
+- <b>decode_12bit: { type: "boolean", default: true }</b> - If 12 bit decoder should be used or not. True or false. Defaults to true.
+- <b>enable_intro_animation: { type: "boolean", default: true }</b> - If intro animation should be applied. True or false. Defaults to true.
+
+## Tech Stack
+The project is based on Lifecast Inc's immersive volumetric video and photo player (see: https://github.com/fbriggs/lifecast_public). It is powered by A-Frame and Three.js.
 
 ## Demo
-To see demo, please visit the <a href="https://yolov8-object-detection.glitch.me/">following page</a>
+To see demo, please visit the <a href="https://lifecast-component.glitch.me/">following page</a>
 
