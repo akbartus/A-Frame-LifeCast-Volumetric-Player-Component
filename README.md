@@ -1,5 +1,10 @@
 # A-Frame LifeCast Volumetric Player Component
 
+<p align="center">
+  <img src="img/screenshot.jpg" />
+</p>
+
+
 This is A-Frame component for LifeCast's volumetric video and photo player. The repository also contains simplified Three.js version of the player.
 
 ## Usage
